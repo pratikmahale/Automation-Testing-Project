@@ -85,8 +85,9 @@ Before running the tests, ensure the following:
 ### Step 1: Clone the Repository
 
  ```bash
-    git clone <repository-link>
-    cd <repository-folder
+    git clone https://github.com/pratikmahale/Automation-Testing-Project.git
+    cd Automation-Testing-Project
+
  ````
     
 ### Step 2: Install Dependencies
@@ -107,7 +108,7 @@ Check by running:
   ```
 
 ---
-[log.html](log.html)
+
 ## 9. Project Structure
 
 ├── Tests
@@ -153,7 +154,7 @@ Run tests  related to the /generateAuthToken endpoint:
 
 ### To view these reports:
 
-1. Open the respective file [output.xml](output.xml) in a web browser.
+1. Open the respective file[output.xml](Reports/output.xml) in a web browser.
 2. Analyze the test results and logs.
 
 ---
