@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.13.0 on win32)" generated="2024-12-04T14:55:34.859120" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="C:\Users\Tnluser\PycharmProjects\RobotFrameworkAutomation\tests">
+<suite id="s1-s1" name="ApiTests" source="C:\Users\Tnluser\PycharmProjects\RobotFrameworkAutomation\tests\ApiTests.robot">
+<test id="s1-s1-t1" name="Validate Auth Token Generation With Missing Password" line="14">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-04T14:55:35.594465" level="INFO">Creating Session using : alias=taqtics, url=https://landmark.taqtics.co/v1/external, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>taqtics</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-04T14:55:35.594267" elapsed="0.000421"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-04T14:55:35.595117" level="INFO">${payload} = {'email': 'intern@taqtics.co'}</msg>
+<var>${payload}</var>
+<arg>email=${VALID_EMAIL}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-04T14:55:35.594875" elapsed="0.000261"/>
+</kw>
+<kw name="Post Request" owner="RequestsLibrary">
+<msg time="2024-12-04T14:55:35.595276" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2024-12-04T14:55:36.715580" level="INFO">POST Request : url=https://landmark.taqtics.co/v1/external/generateAuthToken 
+ path_url=/v1/external/generateAuthToken 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '30', 'Content-Type': 'application/json'} 
+ body=b'{"email": "intern@taqtics.co"}' 
+ </msg>
+<msg time="2024-12-04T14:55:36.715799" level="INFO">POST Response : url=https://landmark.taqtics.co/v1/external/generateAuthToken 
+ status=400, reason=Bad Request 
+ headers={'X-Powered-By': 'Express', 'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '19', 'Date': 'Wed, 04 Dec 2024 09:25:31 GMT', 'X-RateLimit-Reset': '1733304378', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '36', 'ETag': 'W/"24-vaJ4D4qwTp11IsChI9tcqR7x6Uo"', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"\"Password\" is required"} 
+ </msg>
+<msg time="2024-12-04T14:55:36.715925" level="INFO">C:\Users\Tnluser\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'landmark.taqtics.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-12-04T14:55:36.716500" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>taqtics</arg>
+<arg>/generateAuthToken</arg>
+<arg>json=${payload}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<status status="PASS" start="2024-12-04T14:55:35.595258" elapsed="1.121325"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-04T14:55:36.719095" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-12-04T14:55:36.717380" elapsed="0.001894"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-04T14:55:36.720806" level="INFO">{'error': '"Password" is required'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-04T14:55:36.719738" elapsed="0.001168"/>
+</kw>
+<doc>Test API response when the password field is missing.</doc>
+<status status="PASS" start="2024-12-04T14:55:35.593227" elapsed="1.128131"/>
+</test>
+<test id="s1-s1-t2" name="Validate Auth Token Generation With Empty Credentials" line="22">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-12-04T14:55:36.723306" level="INFO">Creating Session using : alias=taqtics, url=https://landmark.taqtics.co/v1/external, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>taqtics</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-12-04T14:55:36.723158" elapsed="0.000310"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-12-04T14:55:36.723924" level="INFO">${payload} = {'email': '', 'password': ''}</msg>
+<var>${payload}</var>
+<arg>email=</arg>
+<arg>password=</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-12-04T14:55:36.723729" elapsed="0.000219"/>
+</kw>
+<kw name="Post Request" owner="RequestsLibrary">
+<msg time="2024-12-04T14:55:36.724212" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2024-12-04T14:55:37.649968" level="INFO">POST Request : url=https://landmark.taqtics.co/v1/external/generateAuthToken 
+ path_url=/v1/external/generateAuthToken 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '29', 'Content-Type': 'application/json'} 
+ body=b'{"email": "", "password": ""}' 
+ </msg>
+<msg time="2024-12-04T14:55:37.650098" level="INFO">POST Response : url=https://landmark.taqtics.co/v1/external/generateAuthToken 
+ status=400, reason=Bad Request 
+ headers={'X-Powered-By': 'Express', 'X-RateLimit-Limit': '20', 'X-RateLimit-Remaining': '18', 'Date': 'Wed, 04 Dec 2024 09:25:32 GMT', 'X-RateLimit-Reset': '1733304378', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '48', 'ETag': 'W/"30-ibOLB9BXKPWkoNBQD3rueULW44M"', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"error":"\"Email\" is not allowed to be empty"} 
+ </msg>
+<msg time="2024-12-04T14:55:37.650202" level="INFO">C:\Users\Tnluser\AppData\Local\Programs\Python\Python313\Lib\site-packages\urllib3\connectionpool.py:1099: InsecureRequestWarning: Unverified HTTPS request is being made to host 'landmark.taqtics.co'. Adding certificate verification is strongly advised. See: https://urllib3.readthedocs.io/en/latest/advanced-usage.html#tls-warnings
+  warnings.warn(</msg>
+<msg time="2024-12-04T14:55:37.650602" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<var>${response}</var>
+<arg>taqtics</arg>
+<arg>/generateAuthToken</arg>
+<arg>json=${payload}</arg>
+<doc>*DEPRECATED* Please use `POST On Session` instead.</doc>
+<status status="PASS" start="2024-12-04T14:55:36.724187" elapsed="0.926460"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<msg time="2024-12-04T14:55:37.651840" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>400</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="PASS" start="2024-12-04T14:55:37.650980" elapsed="0.000971"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-12-04T14:55:37.652598" level="INFO">{'error': '"Email" is not allowed to be empty'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-12-04T14:55:37.652167" elapsed="0.000475"/>
+</kw>
+<doc>Test API response when both email and password are empty.</doc>
+<status status="PASS" start="2024-12-04T14:55:36.722232" elapsed="0.930575"/>
+</test>
+<status status="PASS" start="2024-12-04T14:55:34.893790" elapsed="2.759498"/>
+</suite>
+<suite id="s1-s2" name="LoginTests" source="C:\Users\Tnluser\PycharmProjects\RobotFrameworkAutomation\tests\LoginTests.robot">
+<kw name="Open Browser" owner="SeleniumLibrary" type="SETUP">
+<msg time="2024-12-04T14:55:38.067507" level="INFO">Opening browser 'chrome' to base url 'https://landmark.taqtics.co'.</msg>
+<arg>https://landmark.taqtics.co</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-12-04T14:55:38.062720" elapsed="8.227714"/>
+</kw>
+<test id="s1-s2-t1" name="Valid Login" line="17">
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//input[@id='email']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-12-04T14:55:46.294129" elapsed="0.042812"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:46.338263" level="INFO">Typing text 'intern@taqtics.co' into text field 'xpath=//input[@id='email']'.</msg>
+<arg>xpath=//input[@id='email']</arg>
+<arg>${USERNAME}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:55:46.337761" elapsed="0.267710"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:46.606976" level="INFO">Typing text 'TestIntern@123' into text field 'xpath=//input[@id='password']'.</msg>
+<arg>xpath=//input[@id='password']</arg>
+<arg>${PASSWORD}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:55:46.606230" elapsed="0.226601"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:46.833818" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
+<arg>xpath=//button[@type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:55:46.833403" elapsed="0.148367"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Home</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-04T14:55:46.982194" elapsed="0.597002"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-12-04T14:55:47.579788" elapsed="2.289902"/>
+</kw>
+<status status="PASS" start="2024-12-04T14:55:46.292741" elapsed="3.577760"/>
+</test>
+<test id="s1-s2-t2" name="Invalid Login" line="26">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:49.873861" level="INFO">Opening browser 'chrome' to base url 'https://landmark.taqtics.co'.</msg>
+<arg>https://landmark.taqtics.co</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-12-04T14:55:49.873381" elapsed="9.537811"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:59.411909" level="INFO">Typing text 'invalid_user@test.com' into text field 'xpath=//input[@id='email']'.</msg>
+<arg>xpath=//input[@id='email']</arg>
+<arg>${INVALID_USER}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:55:59.411653" elapsed="0.359913"/>
+</kw>
+<kw name="Input Text" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:59.772684" level="INFO">Typing text 'Invalid123' into text field 'xpath=//input[@id='password']'.</msg>
+<arg>xpath=//input[@id='password']</arg>
+<arg>${INVALID_PASS}</arg>
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:55:59.772174" elapsed="0.215168"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:55:59.988406" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
+<arg>xpath=//button[@type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:55:59.987968" elapsed="0.180563"/>
+</kw>
+<kw name="Wait Until Page Contains" owner="SeleniumLibrary">
+<arg>Not Found</arg>
+<arg>10s</arg>
+<doc>Waits until ``text`` appears on the current page.</doc>
+<status status="PASS" start="2024-12-04T14:56:00.169034" elapsed="0.503589"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-12-04T14:56:00.673491" elapsed="2.245947"/>
+</kw>
+<status status="PASS" start="2024-12-04T14:55:49.871683" elapsed="13.048514"/>
+</test>
+<test id="s1-s2-t3" name="Missing Credentials" line="34">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:56:02.928914" level="INFO">Opening browser 'chrome' to base url 'https://landmark.taqtics.co'.</msg>
+<arg>https://landmark.taqtics.co</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-12-04T14:56:02.928518" elapsed="8.068087"/>
+</kw>
+<kw name="Click Button" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:56:10.997783" level="INFO">Clicking button 'xpath=//button[@type='submit']'.</msg>
+<arg>xpath=//button[@type='submit']</arg>
+<doc>Clicks the button identified by ``locator``.</doc>
+<status status="PASS" start="2024-12-04T14:56:10.997302" elapsed="0.156727"/>
+</kw>
+<kw name="Wait Until Element Is Visible" owner="SeleniumLibrary">
+<arg>xpath=//div[@class='ant-form-item-explain-error']</arg>
+<arg>10s</arg>
+<doc>Waits until the element ``locator`` is visible.</doc>
+<status status="PASS" start="2024-12-04T14:56:11.154823" elapsed="0.488363"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:56:11.681675" level="INFO">Current page contains text 'Please input your email!'.</msg>
+<arg>Please input your email!</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-12-04T14:56:11.644055" elapsed="0.037809"/>
+</kw>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-12-04T14:56:11.704644" level="INFO">Current page contains text 'Please input your Password!'.</msg>
+<arg>Please input your Password!</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-12-04T14:56:11.682630" elapsed="0.022258"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-12-04T14:56:11.705512" elapsed="2.298336"/>
+</kw>
+<status status="PASS" start="2024-12-04T14:56:02.921158" elapsed="11.083410"/>
+</test>
+<kw name="Close Browser" owner="SeleniumLibrary" type="TEARDOWN">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-12-04T14:56:14.006075" elapsed="0.000841"/>
+</kw>
+<status status="PASS" start="2024-12-04T14:55:37.654301" elapsed="36.352806"/>
+</suite>
+<status status="PASS" start="2024-12-04T14:55:34.860580" elapsed="39.149232"/>
+</suite>
+<statistics>
+<total>
+<stat pass="5" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="5" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="2" fail="0" skip="0" id="s1-s1" name="ApiTests">Tests.ApiTests</stat>
+<stat pass="3" fail="0" skip="0" id="s1-s2" name="LoginTests">Tests.LoginTests</stat>
+</suite>
+</statistics>
+<errors>
+<msg time="2024-12-04T14:55:35.592180" level="ERROR">Error in file 'C:\Users\Tnluser\PycharmProjects\RobotFrameworkAutomation\tests\ApiTests.robot' on line 4: Resource file 'Resource\Keywords.robot' does not exist.</msg>
+<msg time="2024-12-04T14:55:35.595276" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+<msg time="2024-12-04T14:55:36.724212" level="WARN">Keyword 'RequestsLibrary.Post Request' is deprecated. Please use `POST On Session` instead.</msg>
+</errors>
+</robot>
